@@ -1,0 +1,15 @@
+---
+services:
+  sshwatch:
+    # image: sshwatch
+    build: .
+    container_name: sshwatch
+    environment:
+      - TZ=Europe/Oslo
+    volumes:
+      - /var/log/journal:/var/log/journal:ro
+      - /run/log/journal:/run/log/journal:ro
+      - /etc/machine-id:/etc/machine-id:ro
+      - /var/lib/sshwatch:/data
+    restart: unless-stopped
+
